@@ -1,0 +1,64 @@
+{
+  "101": {
+    "roll_no": "101",
+    "name": "Student A",
+    "class": "10",
+    "school": "XYZ High School",
+    "photo": "https://via.placeholder.com/100?text=Student+A",
+    "subjects": {
+      "Math": {
+        "marks": 40,
+        "percentage": 40,
+        "grade": "C"
+      },
+      "Science": {
+        "marks": 75,
+        "percentage": 75,
+        "grade": "B"
+      },
+      "English": {
+        "marks": 85,
+        "percentage": 85,
+        "grade": "A"
+      }
+    },
+    "attendance": 65,
+    "quiz_scores": {
+      "Math": 4,
+      "Science": 7,
+      "English": 8
+    },
+    "last_updated": "2026-05-02 10:21:26"
+  },
+  "519": {
+    "roll_no": "519",
+    "name": "piram bee",
+    "class": "8",
+    "school": "municipal high school",
+    "photo": "",
+    "subjects": {
+      "Math": {
+        "marks": 87,
+        "percentage": 87,
+        "grade": "A"
+      },
+      "Science": {
+        "marks": 55,
+        "percentage": 55,
+        "grade": "D"
+      },
+      "English": {
+        "marks": 89,
+        "percentage": 89,
+        "grade": "A"
+      }
+    },
+    "attendance": 79,
+    "quiz_scores": {
+      "Math": 6,
+      "Science": 4,
+      "English": 9
+    },
+    "last_updated": "2026-05-02 10:31:00"
+  }
+}

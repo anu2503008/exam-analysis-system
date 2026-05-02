@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Student - Exam Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .form-subtitle {
+            color: #718096;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .error-message {
+            background: #fed7d7;
+            color: #742a2a;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #e53e3e;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .section-header {
+            background: #f7fafc;
+            padding: 10px 15px;
+            margin: 20px 0 15px 0;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+        }
+
+        .info-note {
+            background: #ebf8ff;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #2c5282;
+        }
+
+        @media (max-width: 640px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .form-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Back to Dashboard</a>
+        
+        <div class="form-card">
+            <h1 class="form-title">➕ Add New Student</h1>
+            <p class="form-subtitle">Enter student details and academic performance data</p>
+            
+            {% if error %}
+            <div class="error-message">
+                ⚠️ {{ error }}
+            </div>
+            {% endif %}
+            
+            <form method="POST" action="/add_student">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Roll Number *</label>
+                        <input type="text" name="roll_no" required placeholder="e.g., 101">
+                    </div>
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="name" required placeholder="Student Name">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Class *</label>
+                        <input type="text" name="class" required placeholder="e.g., 10">
+                    </div>
+                    <div class="form-group">
+                        <label>School *</label>
+                        <input type="text" name="school" required placeholder="School Name">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Photo URL (optional)</label>
+                    <input type="text" name="photo" placeholder="https://... or leave blank for default">
+                </div>
+                
+                <div class="section-header">📚 Subject Marks (out of 100)</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Mathematics *</label>
+                        <input type="number" name="math_marks" required min="0" max="100" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Science *</label>
+                        <input type="number" name="science_marks" required min="0" max="100" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label>English *</label>
+                        <input type="number" name="english_marks" required min="0" max="100" step="1">
+                    </div>
+                </div>
+                
+                <div class="section-header">📝 Quiz Scores (out of 10)</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Math Quiz Score *</label>
+                        <input type="number" name="math_quiz" required min="0" max="10" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Science Quiz Score *</label>
+                        <input type="number" name="science_quiz" required min="0" max="10" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label>English Quiz Score *</label>
+                        <input type="number" name="english_quiz" required min="0" max="10" step="1">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Attendance Percentage *</label>
+                    <input type="number" name="attendance" required min="0" max="100" step="1" placeholder="e.g., 85">
+                </div>
+                
+                <button type="submit" class="btn-submit">📌 Add Student Record</button>
+                
+                <div class="info-note">
+                    💡 <strong>Note:</strong> Grades are automatically calculated based on marks. Quiz scores help identify specific weak areas.
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
